@@ -1,18 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const http = require('http');
 
-const app = express();
-const port = 1212;
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.post('/api/DDS', (req, res) => {
-  const receivedText = req.body.text;
-
-  // Делаем что-то с полученным текстом (в данном случае просто отправим тот же текст обратно)
-  res.send(receivedText);
+const server = http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end('<h1>Welcome to my web site!</h1>');
 });
 
-app.listen(port, () => {
-  console.log(`Сервер запущен на http://localhost:${port}`);
+server.listen(3000, () => {
+    console.log('Server is running on port 3000');
 });
